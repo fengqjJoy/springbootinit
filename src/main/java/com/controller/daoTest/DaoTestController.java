@@ -6,6 +6,7 @@ import com.dto.UserDto;
 import com.entity.User;
 import com.entity.UserExample;
 import com.service.UserService;
+import com.system.annotation.AccessLimit;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -69,9 +70,10 @@ public class DaoTestController {
     }
 
     @RequestMapping("getUserByUserName.do")
+    @AccessLimit(maxCount=5,seconds = 1)
     public Object getUserByUserName(String username) {
         User user = userMapper.getUserByUserName(username);
-        UserDto userDto = userMapper.getUserRoleByUserName(username);
-        return userDto;
+//        UserDto userDto = userMapper.getUserRoleByUserName(username);
+        return user;
     }
 }
