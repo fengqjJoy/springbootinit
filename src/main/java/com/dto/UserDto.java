@@ -2,6 +2,7 @@ package com.dto;
 
 import com.entity.Role;
 import com.entity.User;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.util.List;
 
@@ -12,6 +13,8 @@ import java.util.List;
  * @Date: 2020-06-26 16:43
  * @Description: TODO
  **/
+
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class UserDto extends User {
     private List<RoleDto> roleList;
 
